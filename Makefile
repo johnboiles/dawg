@@ -87,7 +87,7 @@ ssh-list: ## List IDs of SSH key in Digital Ocean
 
 .PHONY: snapshot
 snapshot: ## Snapshot the server
-	ssh root@$$(terraform -chdir=terraform output ip | tr -d '\n' | tr -d '"') doctl -t $$(cat $(DO_TOKEN_FILE) | tr -d '\n') compute droplet-action snapshot $$(terraform output droplet_id | tr -d '\n') --snapshot-name dawg
+	ssh root@$$(terraform -chdir=terraform output ip | tr -d '\n' | tr -d '"') doctl -t $$(cat $(DO_TOKEN_FILE) | tr -d '\n') compute droplet-action snapshot $$(terraform -chdir=terraform output droplet_id | tr -d '\n') --snapshot-name dawg
 
 .PHONY: download-key
 download-key: ## Download the server's private keys and store locally
